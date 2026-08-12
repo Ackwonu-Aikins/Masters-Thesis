@@ -1,0 +1,6 @@
+nkesah/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw/
+*.csv
