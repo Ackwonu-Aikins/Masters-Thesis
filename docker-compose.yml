@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  thesis-jupyter:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: masters-thesis-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./CODES:/app/CODES:ro
+      - ./nkesah:/app/nkesah
+      - ./results_11nodes_LR_morning_rush_clear.csv:/app/results_11nodes_LR_morning_rush_clear.csv:ro
+      - ./docker:/app/docker
+      - thesis-notebook-data:/app/notebook-data
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+    read_only: false
+
+volumes:
+  thesis-notebook-data:
